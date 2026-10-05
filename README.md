@@ -17,3 +17,15 @@ For example, ask your agent: “Use nexrad to find a radar near Oklahoma City, d
 The skill documents reader scope, timestamp meanings, masks and coordinate approximations so derived results retain their scientific context. It is self-contained after installation and has no website dependency.
 
 MIT licensed. NOAA data attribution and upstream dependency licensing are documented within the installed skill.
+
+Install SDSS:
+
+```sh
+npx skills add SimonGFarmer/skills --skill sdss
+```
+
+SDSS helps agents query official DR20 spectral records by sky region or exact target identifier, compare classifications and redshifts with quality flags, retrieve exact spectra, and work with explicitly labelled legacy photometry. It preserves string identifiers and catalog, archive and delivery provenance. Python 3.11 or later and network access are required; its helpers use only the standard library.
+
+For example, ask your agent: "Use sdss to query a two-arcminute region around RA 229.525575753922, Dec 42.7458537608544. Compare the available spectral records and quality flags, then retrieve one exact DR20 daily spectrum through Valis." See [the skill instructions](skills/sdss/SKILL.md) and [the real-data example](skills/sdss/references/example.md).
+
+The skill distinguishes DR20 spectra from legacy imaging and keeps photometric morphology separate from fitted spectral classes. The SDSS helper code and instructions are MIT licensed; [survey attribution and data terms](skills/sdss/NOTICE.md) remain separate.
