@@ -39,3 +39,11 @@ npx skills add SimonGFarmer/skills --skill argo
 Argo helps agents discover ocean profiles by region, UTC interval or float identifier, download bounded official GDAC NetCDF files, and decode pressure, temperature and practical salinity with the correct raw or adjusted values, quality flags, errors and provenance. Python 3.11+ and network access are required; decoding needs [the listed dependencies](skills/argo/requirements.txt).
 
 For example, ask your agent: "Use argo to find profiles in the North Atlantic during September 2026, download one and report temperature and salinity against pressure with quality flags." See [the skill instructions](skills/argo/SKILL.md) and [the reproducible example](skills/argo/references/example.md). Core profiles are supported; BGC and trajectory products require their own processing. Helper code and instructions are MIT licensed; [data attribution and upstream terms](skills/argo/references/data-access.md) remain separate.
+
+Install PDB archive data:
+
+```sh
+npx skills add SimonGFarmer/skills --skill pdb-archive-data
+```
+
+PDB archive data helps agents discover experimental structures and retrieve bounded official RCSB metadata and original mmCIF files with saved provenance. Python 3.10+ and network access are required; retrieval uses the standard library. For example: "Use pdb-archive-data to find experimental crambin entries, retrieve 1CRN, and report its method, resolution and revision with the limitations of the evidence." See [the skill instructions](skills/pdb-archive-data/SKILL.md) and [data contract](skills/pdb-archive-data/references/data-contract.md). Coordinate analysis requires a mature parser and explicit model/conformer selection. Helper code and instructions are MIT licensed; [upstream data terms](skills/pdb-archive-data/NOTICE.md) remain separate.
