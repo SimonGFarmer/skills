@@ -47,3 +47,11 @@ npx skills add SimonGFarmer/skills --skill pdb-archive-data
 ```
 
 PDB archive data helps agents discover experimental structures and retrieve bounded official RCSB metadata and original mmCIF files with saved provenance. Python 3.10+ and network access are required; retrieval uses the standard library. For example: "Use pdb-archive-data to find experimental crambin entries, retrieve 1CRN, and report its method, resolution and revision with the limitations of the evidence." See [the skill instructions](skills/pdb-archive-data/SKILL.md) and [data contract](skills/pdb-archive-data/references/data-contract.md). Coordinate analysis requires a mature parser and explicit model/conformer selection. Helper code and instructions are MIT licensed; [upstream data terms](skills/pdb-archive-data/NOTICE.md) remain separate.
+
+Install Gaia TAP data:
+
+```sh
+npx skills add SimonGFarmer/skills --skill gaia-tap-data
+```
+
+Gaia TAP data retrieves bounded Gaia DR3 sky fields from the official ESA service and preserves astrometry, uncertainty, units, selection limits and provenance. Python 3.10+ and direct outbound HTTPS are required; the helper uses only the standard library. For example: "Use gaia-tap-data to retrieve 100 sources near RA 56.75 degrees, Dec 24.12 degrees in a 0.1-degree cone, then report the selection and proper-motion uncertainty without assuming cluster membership or distance." See [the skill instructions](skills/gaia-tap-data/SKILL.md) and [data contract](skills/gaia-tap-data/references/data-contract.md). Helper code and instructions are MIT licensed; [upstream data terms and attribution](skills/gaia-tap-data/NOTICE.md) remain separate.

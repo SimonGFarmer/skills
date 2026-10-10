@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.3" xmlns="http://www.ivoa.net/xml/VOTable/v1.3">
+  <RESOURCE type="results">
+    <INFO name="QUERY_STATUS" value="OK"/>
+    <TABLE>
+      <FIELD name="source_id" datatype="long"/>
+      <FIELD name="ref_epoch" datatype="double" unit="yr"/>
+      <FIELD name="ra" datatype="double" unit="deg"/>
+      <FIELD name="dec" datatype="double" unit="deg"/>
+      <FIELD name="ra_error" datatype="float" unit="mas"/>
+      <FIELD name="dec_error" datatype="float" unit="mas"/>
+      <FIELD name="parallax" datatype="double" unit="mas"/>
+      <FIELD name="parallax_error" datatype="float" unit="mas"/>
+      <FIELD name="pmra" datatype="double" unit="mas.yr-1"/>
+      <FIELD name="pmdec" datatype="double" unit="mas.yr-1"/>
+      <FIELD name="pmra_error" datatype="float" unit="mas.yr-1"/>
+      <FIELD name="pmdec_error" datatype="float" unit="mas.yr-1"/>
+      <FIELD name="ra_dec_corr" datatype="float"/>
+      <FIELD name="ra_parallax_corr" datatype="float"/>
+      <FIELD name="ra_pmra_corr" datatype="float"/>
+      <FIELD name="ra_pmdec_corr" datatype="float"/>
+      <FIELD name="dec_parallax_corr" datatype="float"/>
+      <FIELD name="dec_pmra_corr" datatype="float"/>
+      <FIELD name="dec_pmdec_corr" datatype="float"/>
+      <FIELD name="parallax_pmra_corr" datatype="float"/>
+      <FIELD name="parallax_pmdec_corr" datatype="float"/>
+      <FIELD name="pmra_pmdec_corr" datatype="float"/>
+      <FIELD name="phot_g_mean_mag" datatype="float" unit="mag"/>
+      <FIELD name="bp_rp" datatype="float" unit="mag"/>
+      <FIELD name="ruwe" datatype="float"/>
+      <FIELD name="astrometric_params_solved" datatype="int"/>
+      <DATA><TABLEDATA>
+        <TR><TD>1234567890123456789</TD><TD>2016.0</TD><TD>359.999</TD><TD>89.9</TD><TD>0.2</TD><TD>0.3</TD><TD>-0.8</TD><TD>0.5</TD><TD>12.5</TD><TD>-2</TD><TD>0.1</TD><TD>0.2</TD><TD>0.25</TD><TD>0</TD><TD>-0.1</TD><TD>0</TD><TD>0</TD><TD>0</TD><TD>0.1</TD><TD>0</TD><TD>0</TD><TD>-0.4</TD><TD>12.8</TD><TD></TD><TD>1.1</TD><TD>31</TD></TR>
+        <TR><TD>1234567890123456790</TD><TD>2016.0</TD><TD>0.001</TD><TD>-89.9</TD><TD>0.2</TD><TD>0.3</TD><TD></TD><TD></TD><TD>-4</TD><TD>3</TD><TD>0.1</TD><TD>0.2</TD><TD>0</TD><TD>0</TD><TD>0</TD><TD>0</TD><TD>0</TD><TD>0</TD><TD>0</TD><TD>0</TD><TD>0</TD><TD>0</TD><TD>14.2</TD><TD>1.3</TD><TD></TD><TD>95</TD></TR>
+      </TABLEDATA></DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>
