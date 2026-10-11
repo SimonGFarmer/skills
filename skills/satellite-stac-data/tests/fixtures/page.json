@@ -1,0 +1,19 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "TEST_ONLY_NO_OBSERVATION",
+      "collection": "landsat-c2-l2",
+      "geometry": {"type": "Polygon", "coordinates": [[[12.4, 41.8], [12.6, 41.8], [12.6, 42.0], [12.4, 42.0], [12.4, 41.8]]]},
+      "bbox": [12.4, 41.8, 12.6, 42.0],
+      "properties": {"datetime": "2024-06-01T10:00:00Z", "platform": "landsat-8", "eo:cloud_cover": null, "test:synthetic": true},
+      "assets": {
+        "tilejson": {"href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=landsat-c2-l2&item=TEST_ONLY_NO_OBSERVATION&assets=red&assets=green&assets=blue&rescale=7000%2C30000", "type": "application/json"},
+        "rendered_preview": {"href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=landsat-c2-l2&item=TEST_ONLY_NO_OBSERVATION&assets=red&assets=green&assets=blue", "roles": ["overview"], "type": "image/png"}
+      },
+      "links": [{"rel": "self", "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/TEST_ONLY_NO_OBSERVATION", "type": "application/geo+json"}]
+    }
+  ],
+  "links": [{"rel": "next", "href": "https://planetarycomputer.microsoft.com/api/stac/v1/search", "method": "POST", "body": {"token": "synthetic-pagination-cursor"}, "merge": true}]
+}

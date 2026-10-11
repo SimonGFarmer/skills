@@ -1,0 +1,3 @@
+# Maintaining the acquisition helper
+
+Run `python -m unittest discover -s tests -v` after changes. Keep requests bounded to one explicit official STAC page; retain query bounds across continuation. Test parser failures, UTC acquisition identity, unknown cloud cover, byte limits, deadlines, preview parameters and credential redaction. Fixtures must remain explicitly synthetic. Validate an installed copy with a small real search and inspect preview coverage before claiming an acquisition is usable. Keep retrieval evidence and generated outputs outside this package. Preserve official attribution and source links; dataset terms do not grant a license to new code.

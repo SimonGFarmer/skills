@@ -55,3 +55,11 @@ npx skills add SimonGFarmer/skills --skill gaia-tap-data
 ```
 
 Gaia TAP data retrieves bounded Gaia DR3 sky fields from the official ESA service and preserves astrometry, uncertainty, units, selection limits and provenance. Python 3.10+ and direct outbound HTTPS are required; the helper uses only the standard library. For example: "Use gaia-tap-data to retrieve 100 sources near RA 56.75 degrees, Dec 24.12 degrees in a 0.1-degree cone, then report the selection and proper-motion uncertainty without assuming cluster membership or distance." See [the skill instructions](skills/gaia-tap-data/SKILL.md) and [data contract](skills/gaia-tap-data/references/data-contract.md). Helper code and instructions are MIT licensed; [upstream data terms and attribution](skills/gaia-tap-data/NOTICE.md) remain separate.
+
+Install Satellite STAC data:
+
+```sh
+npx skills add SimonGFarmer/skills --skill satellite-stac-data
+```
+
+Satellite STAC data helps agents discover bounded historical Landsat and Sentinel-2 acquisitions through the official public Planetary Computer archive, preserve UTC acquisition identity and provenance, paginate deliberately, and obtain reproducible provider display links. Python 3.10+ and outbound HTTPS are required; discovery uses only the standard library and needs no account or API key. For example: "Use satellite-stac-data to find Landsat acquisitions intersecting central Rome in June–August 2024, report their dates and cloud metadata, and inspect an official preview's coverage." See [the skill instructions](skills/satellite-stac-data/SKILL.md) and [scientific access guidance](skills/satellite-stac-data/references/scientific-access.md). Preview pixels and alpha do not establish native resolution or cloud QA; calibrated raster analysis requires a separate workflow. Helper code and instructions are MIT licensed; upstream data attribution and terms remain separate.
