@@ -30,6 +30,14 @@ For example, ask your agent: "Use sdss to query a two-arcminute region around RA
 
 The skill distinguishes DR20 spectra from legacy imaging and keeps photometric morphology separate from fitted spectral classes. The SDSS helper code and instructions are MIT licensed; [survey attribution and data terms](skills/sdss/NOTICE.md) remain separate.
 
+Install USGS Earthquakes (Faultlines):
+
+```sh
+npx skills add SimonGFarmer/skills --skill usgs-earthquakes
+```
+
+USGS Earthquakes discovers bounded event sets from the USGS Earthquake Catalog and summarizes recent activity from official feeds. The standalone skill uses Python's standard library and does not require the Faultlines globe demo. See [the skill instructions](skills/usgs-earthquakes/SKILL.md) for supported queries and source caveats.
+
 Install Argo:
 
 ```sh
@@ -63,3 +71,8 @@ npx skills add SimonGFarmer/skills --skill satellite-stac-data
 ```
 
 Satellite STAC data helps agents discover bounded historical Landsat and Sentinel-2 acquisitions through the official public Planetary Computer archive, preserve UTC acquisition identity and provenance, paginate deliberately, and obtain reproducible provider display links. Python 3.10+ and outbound HTTPS are required; discovery uses only the standard library and needs no account or API key. For example: "Use satellite-stac-data to find Landsat acquisitions intersecting central Rome in June–August 2024, report their dates and cloud metadata, and inspect an official preview's coverage." See [the skill instructions](skills/satellite-stac-data/SKILL.md) and [scientific access guidance](skills/satellite-stac-data/references/scientific-access.md). Preview pixels and alpha do not establish native resolution or cloud QA; calibrated raster analysis requires a separate workflow. Helper code and instructions are MIT licensed; upstream data attribution and terms remain separate.
+
+
+## Maintenance
+
+GitHub Actions runs the offline helper tests on Linux and Windows and checks skill metadata, this install list, and local documentation links. For local commands and bounded live-data checks, see [the test guide](tests/README.md).

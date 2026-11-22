@@ -239,8 +239,15 @@ def download(args):
         with tempfile.NamedTemporaryFile(dir=output.parent, delete=False) as handle:
             temp = Path(handle.name)
             handle.write(body)
-        # Hard link is atomic and never overwrites a file created after the first check.
-        os.link(temp, output)
+        # Same-directory rename on Windows fails if the destination already exists.
+        # On POSIX, rename can overwrite, so publish via an exclusive hard link.
+        try:
+            if os.name == "nt":
+                os.rename(temp, output)
+            else:
+                os.link(temp, output)
+        except FileExistsError as exc:
+            raise DataError("Output already exists; choose a new filename") from exc
     finally:
         if temp is not None:
             temp.unlink(missing_ok=True)
