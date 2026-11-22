@@ -125,6 +125,23 @@ class Tests(unittest.TestCase):
                     sdss.download(args)
             self.assertEqual(list(Path(tmp).iterdir()), [destination])
 
+    def test_download_preserves_destination_created_during_request(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            destination = Path(tmp) / "one.fits"
+            args = self.args("spectrum", "--id", "record", "--output", str(destination))
+            row = {"allspec_id": "record", "sas_url": "https://data.sdss.org/sas/dr20/test/spec.fits"}
+            result = {"rows": [row], "has_more": False, "query_url": "url", "retrieved_at": "date"}
+
+            def competing_write(*_):
+                destination.write_bytes(b"existing")
+                return b"SIMPLE  =" + b" " * (2880 - 9)
+
+            with patch.object(sdss, "query", return_value=result), patch.object(sdss, "request", side_effect=competing_write):
+                with self.assertRaisesRegex(sdss.DataError, "Output already exists"):
+                    sdss.download(args)
+            self.assertEqual(destination.read_bytes(), b"existing")
+            self.assertEqual(list(Path(tmp).iterdir()), [destination])
+
     def test_truncated_fits_not_saved(self):
         with tempfile.TemporaryDirectory() as tmp:
             destination = Path(tmp) / 'truncated.fits'

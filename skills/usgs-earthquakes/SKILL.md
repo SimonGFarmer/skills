@@ -1,0 +1,20 @@
+---
+name: usgs-earthquakes
+description: Discover and query official USGS earthquake feeds and historical ComCat events, inspect magnitudes, depths, uncertainty and source provenance, and download exact available event products for analyses or applications.
+---
+
+# USGS Earthquakes
+
+Use Python 3.11 or later and HTTPS access to `earthquake.usgs.gov`. The helper uses only the standard library, without accounts or API keys. Resolve `scripts/usgs.py` relative to this installed skill folder regardless of working directory; replace `python` with the available Python 3.11+ command. Establish the location in decimal degrees, explicit UTC interval, magnitude threshold and desired output. This helper does not resolve place names.
+
+Read [references/data-access.md](references/data-access.md) for source access, request limits and update semantics. For standard recent windows use `python scripts/usgs.py feed --window day --level 4.5`; feeds are rolling snapshots, may include non-earthquake event types, and are not an alerting service. Filter by actual `event_type` when the user wants earthquakes only.
+
+For custom regions or history use `query --start 2019-07-06T00:00:00Z --end 2019-07-07T00:00:00Z --latitude 35.77 --longitude -117.60 --radius-km 100 --min-magnitude 4 --limit 100`. The helper counts first, returns one page in ascending origin time, and rejects counts above 20,000 so the caller can split time/region. It caps a page at 1,000 and an interval at 366 days. If `has_more_at_preflight` is true, repeat identical filters with `--offset NEXT_OFFSET` and a deliberate total-page/event budget. Report partial collection; offset pages are not an atomic snapshot. Deduplicate event IDs across pages/adjacent API-inclusive intervals and retain changes rather than silently dropping revisions.
+
+Read [references/interpretation.md](references/interpretation.md) before reporting measurements. GeoJSON coordinates are longitude degrees, latitude degrees, depth km; depth is positive downward. Origin and update times are epoch milliseconds, not seconds. Preserve nulls, zero/negative magnitudes, negative depths, `magType`, status and event type. Reviewed estimates can still change. A sparse catalog is not proof of safety or completeness; dots and illustrative pulses do not determine fault surfaces, rupture propagation or predicted ground shaking.
+
+Use `detail --event-id ID` for a raw event and product inventory. Use `detail --event-id ID --format csv` for preferred measurements with available horizontal/depth/magnitude errors and magnitude/location sources; query also accepts `--format csv`. CSV and GeoJSON fetched separately may reflect different revisions: compare canonical IDs, origin/update times and measurements before combining them. Missing errors mean unknown uncertainty, not exact measurements. For multiple origins/magnitudes or rigorous uncertainty provenance inspect an available origin `quakeml.xml` with a maintained QuakeML reader and its contributor's conventions.
+
+Download one exact content entry with `product --event-id ID --product-type TYPE --product-id PRODUCT_ID --content CONTENT_KEY --output FILE --max-bytes 5000000`. Copy the full product ID and content key from the detail inventory. Preference follows weight then update time, not the latest timestamp alone. The helper rechecks the exact active version, supports HTTPS content on `earthquake.usgs.gov`, refuses redirects and existing output files, and preserves bytes with a SHA-256 manifest. Missing product/content, changed version, unsupported host, service failure or exceeded cap is a reported failure. It does not decode ShakeMap grids, seismic waveforms or every scientific product.
+
+See [references/example.md](references/example.md) for small reproducible workflows and failure checks. Keep JSON stdout alongside analyses: it contains normalized events, raw GeoJSON or CSV, request URL, retrieval time and response hash. Credit [USGS and the contributing sources](NOTICE.md). Use official warning agencies for hazard decisions.
